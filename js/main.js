@@ -1,37 +1,8 @@
 "use strict"
 
-function renderCoffee(coffee) {
-    var html = '<tr class="coffee">';
-    html += '<td>' + coffee.id + '</td>';
-    html += '<td>' + coffee.name + '</td>';
-    html += '<td>' + coffee.roast + '</td>';
-    html += '</tr>';
 
-    return html;
-}
-
-function renderCoffees(coffees) {
-    var html = '';
-    for(var i = coffees.length - 1; i >= 0; i--) {
-        html += renderCoffee(coffees[i]);
-    }
-    return html;
-}
-
-function updateCoffees(e) {
-    e.preventDefault(); // don't submit the form, we just want to update the data
-    var selectedRoast = roastSelection.value;
-    var filteredCoffees = [];
-    coffees.forEach(function(coffee) {
-        if (coffee.roast === selectedRoast) {
-            filteredCoffees.push(coffee);
-        }
-    });
-    tbody.innerHTML = renderCoffees(filteredCoffees);
-}
-
-// from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
-var coffees = [
+// // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
+let coffees = [
     {id: 1, name: 'Light City', roast: 'light'},
     {id: 2, name: 'Half City', roast: 'light'},
     {id: 3, name: 'Cinnamon', roast: 'light'},
@@ -48,10 +19,89 @@ var coffees = [
     {id: 14, name: 'French', roast: 'dark'},
 ];
 
-var tbody = document.querySelector('#coffees');
-var submitButton = document.querySelector('#submit');
-var roastSelection = document.querySelector('#roast-selection');
+let globalCoffee = coffees.map((d) => d.name);
 
-tbody.innerHTML = renderCoffees(coffees);
+coffeePrint();
 
-submitButton.addEventListener('click', updateCoffees);
+function sort(num){
+    let filter = [];
+    if (num === `1`){
+       filter = coffees.filter((d) => d.roast === `light`);
+    }
+    else if (num === `2`){
+        filter = coffees.filter((d) => d.roast === `medium`);
+    }
+    else if (num === `3`){
+        filter = coffees.filter((d) => d.roast === `dark`);
+    }
+    else {
+        filter = coffees;
+    }
+    globalCoffee =  filter.map((d) => d.name);
+    coffeePrint();
+}
+
+function coffeePrint(str){
+    $(`#coffeeDisplay`).empty();
+    if (str === `` || str === undefined){
+        globalCoffee.forEach((d) => $(`#coffeeDisplay`).append(`<div class="col">${d}</div>`));
+    }
+    else{
+       str = str.toLowerCase();
+      let filter =  globalCoffee.filter((d)=> d.toLowerCase().includes(str))
+      filter.forEach((d) => $(`#coffeeDisplay`).append(`<div class="col">${d}</div>`));
+    }
+}
+
+
+// function displayCoffee(input){
+//     if (input === undefined){
+//         let coffeeName = coffees.map((d) => d.name);
+//         coffeeName.forEach((d) => $(`#coffeeDisplay`).append(`<div class="col">${d}</div>`));
+//     }
+//     else if (input === `1`){
+//         $(`#coffeeDisplay`).empty();
+//         if (search === ``){
+//             sort(`1`).forEach((d) => $(`#coffeeDisplay`).append(`<div class="col">${d}</div>`));
+//         }
+//         else {
+//             sort(`1`).includes(search);
+//         }
+//
+//     }
+//     else if (input === `2`){
+//         let coffeeName = coffees.filter((d) => d.roast === `medium`);
+//         let displayCoffee = coffeeName.map((d) => d.name);
+//         $(`#coffeeDisplay`).empty();
+//         displayCoffee.forEach((d) => $(`#coffeeDisplay`).append(`<div class="col">${d}</div>`));
+//     }
+//     else if (input === `3`){
+//         let coffeeName = coffees.filter((d) => d.roast === `dark`);
+//         let displayCoffee = coffeeName.map((d) => d.name);
+//         $(`#coffeeDisplay`).empty();
+//         displayCoffee.forEach((d) => $(`#coffeeDisplay`).append(`<div class="col">${d}</div>`));
+//     }
+//     else  {
+//         input.toLowerCase();
+//         let coffeeName = coffees.map((d) => d.name);
+//        let filterCoffee =  coffeeName.filter((d) => d.toLowerCase().includes(`${input}`))
+//         $(`#coffeeDisplay`).empty();
+//        filterCoffee.forEach((d) => $(`#coffeeDisplay`).append(`<div class="col">${d}</div>`));
+//     }
+//
+// }
+// displayCoffee();
+$(`#search`).keyup(() => {
+    let search = $(`#search`).val().toLowerCase();
+    coffeePrint(search);
+})
+$(`#options`).change(() =>{
+    let test = $(`#options`).val();
+    if (test === `Filter by Roast`){
+        test = undefined;
+    }
+    $(`#search`).val(``);
+    sort(test);
+})
+
+
