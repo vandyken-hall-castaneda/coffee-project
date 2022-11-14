@@ -8,7 +8,7 @@
 
 // // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
 
-getData();
+
 
 ////// load in the new data /////
 let coffees = [
@@ -27,7 +27,7 @@ let coffees = [
     {id: 13, name: 'Italian', roast: 'dark'},
     {id: 14, name: 'French', roast: 'dark'},
 ];
-
+    getData();
 
 let globalCoffee = coffees.map((d) => d.name);
 
@@ -94,7 +94,16 @@ $(`#options`).change(() =>{
 
 $(`#save`).click(() =>{
     let newName = $(`#name`).val();
-    let newRoast = $(`#roast`).val();
+    let newRoast = $(`#optionsRoast`).val();
+    if (newRoast === `1`){
+        newRoast = `light`
+    }
+    else if (newRoast === `2`){
+        newRoast = `medium`
+    }
+    else if (newRoast === `3`){
+        newRoast = `dark`
+    }
     const coffee = {
         id : count,
         name: newName,
@@ -102,9 +111,12 @@ $(`#save`).click(() =>{
     }
     window.localStorage.setItem(count, JSON.stringify(coffee));
     count ++;
+    coffees.push(coffee);
     $(`#name`).val(``);
-    $(`#roast`).val(``);
-    coffeePrint();
+    $(`#optionsRoast`).val(`Roast`);
+    $(`#options`).val(`Filter by Roast`);
+    $(`#search`).val(``);
+    sort();
 })
 })();
 //////////////////////////////////////////////////

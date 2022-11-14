@@ -12,38 +12,41 @@
 
 <body>
 <script src="js/jquery.js"></script>
-<h1>Coffee</h1>
+<h1 class="text-center mb-4 mt-5">Coffee</h1>
 <div class="container">
 	<div class="row">
 		<div class="col">
-			<div class="row row-cols-2" id="coffeeDisplay">
+			<div class="row row-cols-2 border" id="coffeeDisplay">
 
 			</div>
 		</div>
-		<div class="col">
-			<div class="row">
+		<div class="col border">
+			<div class="row m-2">
 				<div class="row">
-					<input type="text" placeholder="Search coffees" id="search">
-				</div>
-				<div class="row">
-					<select class="form-select" aria-label="Default select example" id="options">
+					<select class="form-select " aria-label="Default select example" id="options">
 						<option selected>Filter by Roast</option>
 						<option value="1">Light</option>
 						<option value="2">Medium</option>
 						<option value="3">Dark</option>
 					</select>
 				</div>
-
+				<div class="row mt-3 mb-3">
+					<input type="text" placeholder="Search coffees" id="search">
+				</div>
 			</div>
-			<div class="row">
-				<form>
+			<div class="row border-top mb-3">
+				<form class="mt-4">
 					<div class="mb-3">
 						<label for="name" class="form-label">Coffee Name</label>
-						<input type="name" class="form-control" id="name">
+						<input type="text" class="form-control" id="name" placeholder="Type your coffee here!">
 					</div>
 					<div class="mb-3">
-						<label for="roast" class="form-label">Roast</label>
-						<input type="text" class="form-control" id="roast">
+						<select class="form-select" aria-label="Default select example" id="optionsRoast">
+							<option selected>Roast</option>
+							<option value="1">Light</option>
+							<option value="2">Medium</option>
+							<option value="3">Dark</option>
+						</select>
 					</div>
 					<button type="button" class="btn btn-primary" id="save">Send to our local list!</button>
 				</form>
