@@ -1,7 +1,16 @@
-"use strict"
+"use strict";
 
+(function () {
+
+
+//////// CLEAR LOCAL STORAGE
+// window.localStorage.clear()
 
 // // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
+
+getData();
+
+////// load in the new data /////
 let coffees = [
     {id: 1, name: 'Light City', roast: 'light'},
     {id: 2, name: 'Half City', roast: 'light'},
@@ -19,7 +28,11 @@ let coffees = [
     {id: 14, name: 'French', roast: 'dark'},
 ];
 
+
 let globalCoffee = coffees.map((d) => d.name);
+
+let count = coffees[coffees.length-1].id +1;
+
 
 coffeePrint();
 
@@ -54,43 +67,18 @@ function coffeePrint(str){
 }
 
 
-// function displayCoffee(input){
-//     if (input === undefined){
-//         let coffeeName = coffees.map((d) => d.name);
-//         coffeeName.forEach((d) => $(`#coffeeDisplay`).append(`<div class="col">${d}</div>`));
-//     }
-//     else if (input === `1`){
-//         $(`#coffeeDisplay`).empty();
-//         if (search === ``){
-//             sort(`1`).forEach((d) => $(`#coffeeDisplay`).append(`<div class="col">${d}</div>`));
-//         }
-//         else {
-//             sort(`1`).includes(search);
-//         }
-//
-//     }
-//     else if (input === `2`){
-//         let coffeeName = coffees.filter((d) => d.roast === `medium`);
-//         let displayCoffee = coffeeName.map((d) => d.name);
-//         $(`#coffeeDisplay`).empty();
-//         displayCoffee.forEach((d) => $(`#coffeeDisplay`).append(`<div class="col">${d}</div>`));
-//     }
-//     else if (input === `3`){
-//         let coffeeName = coffees.filter((d) => d.roast === `dark`);
-//         let displayCoffee = coffeeName.map((d) => d.name);
-//         $(`#coffeeDisplay`).empty();
-//         displayCoffee.forEach((d) => $(`#coffeeDisplay`).append(`<div class="col">${d}</div>`));
-//     }
-//     else  {
-//         input.toLowerCase();
-//         let coffeeName = coffees.map((d) => d.name);
-//        let filterCoffee =  coffeeName.filter((d) => d.toLowerCase().includes(`${input}`))
-//         $(`#coffeeDisplay`).empty();
-//        filterCoffee.forEach((d) => $(`#coffeeDisplay`).append(`<div class="col">${d}</div>`));
-//     }
-//
-// }
-// displayCoffee();
+function getData(){
+    for (let i = 15; i < 50; i++){
+        let current =  JSON.parse(window.localStorage.getItem(`${i}`))
+        if (current === null){
+            break;
+        }
+        else {
+            coffees.push(current);
+        }
+    }
+}
+///////////// LISTENERS ////////////////////////////
 $(`#search`).keyup(() => {
     let search = $(`#search`).val().toLowerCase();
     coffeePrint(search);
@@ -104,4 +92,19 @@ $(`#options`).change(() =>{
     sort(test);
 })
 
-
+$(`#save`).click(() =>{
+    let newName = $(`#name`).val();
+    let newRoast = $(`#roast`).val();
+    const coffee = {
+        id : count,
+        name: newName,
+        roast: newRoast,
+    }
+    window.localStorage.setItem(count, JSON.stringify(coffee));
+    count ++;
+    $(`#name`).val(``);
+    $(`#roast`).val(``);
+    coffeePrint();
+})
+})();
+//////////////////////////////////////////////////
