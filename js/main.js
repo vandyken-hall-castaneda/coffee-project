@@ -24,7 +24,7 @@
 	let globalCoffee = coffees.map((d) => d.name);
 	let count = coffees[coffees.length - 1].id + 1;
 	coffeePrint();
-	function sort(num) {
+	function sort(num) {                                     /*takes filter selection and only prints valid information*/
 		let filter = [];
 		if (num === `1`) {
 			filter = coffees.filter((d) => d.roast === `light`);
@@ -39,7 +39,7 @@
 		coffeePrint();
 	}
 	function coffeePrint(str) {
-		$(`#coffeeDisplay`).empty();
+		$(`#coffeeDisplay`).empty();                               /*loop to print objects into container*/
 		if (str === `` || str === undefined) {
 			globalCoffee.forEach((d) => $(`#coffeeDisplay`).append(`<div class="col">${d}</div>`));
 		} else {
@@ -48,7 +48,7 @@
 			filter.forEach((d) => $(`#coffeeDisplay`).append(`<div class="col">${d}</div>`));
 		}
 	}
-	function getData() {
+	function getData() {                                             /*send and rewrite code for local storage*/
 		for (let i = 15; i < 50; i++) {
 			let current = JSON.parse(window.localStorage.getItem(`${i}`))
 			if (current === null) {
@@ -59,11 +59,11 @@
 		}
 	}
 ///////////// LISTENERS ////////////////////////////
-	$(`#search`).keyup(() => {
+	$(`#search`).keyup(() => {                           /*search bar updater*/
 		let search = $(`#search`).val().toLowerCase();
 		coffeePrint(search);
 	})
-	$(`#options`).change(() => {
+	$(`#options`).change(() => {                         /*drop down roast selector*/
 		let test = $(`#options`).val();
 		if (test === `Filter by Roast`) {
 			test = undefined;
@@ -71,7 +71,7 @@
 		$(`#search`).val(``);
 		sort(test);
 	})
-	$(`#save`).click(() => {
+	$(`#save`).click(() => {                          /*save/add new coffee*/
 		let newName = $(`#name`).val();
 		let newRoast = $(`#optionsRoast`).val();
 		if (newRoast === `1`) {
@@ -86,7 +86,7 @@
 			name: newName,
 			roast: newRoast,
 		}
-		window.localStorage.setItem(count, JSON.stringify(coffee));
+		window.localStorage.setItem(count, JSON.stringify(coffee));     /*converting our object into jason for local storage*/
 		count++;
 		coffees.push(coffee);
 		$(`#name`).val(``);
