@@ -41,11 +41,11 @@
 	function coffeePrint(str) {
 		$(`#coffeeDisplay`).empty();                               /*loop to print objects into container*/
 		if (str === `` || str === undefined) {
-			globalCoffee.forEach((d) => $(`#coffeeDisplay`).append(`<div class="anime col p-1 fs-3">${d.name} <span class="little fs-5 fst-italic p-1">${d.roast}</span></div>`));
+			globalCoffee.forEach((d) => $(`#coffeeDisplay`).append(`<div class="anime col p-1 fs-3">${d.name} <span class="d-md-inline d-none little fs-5 fst-italic p-1">${d.roast}</span></div>`));
 		} else {
 			str = str.toLowerCase();
 			let filter = globalCoffee.filter((d) => d.name.toLowerCase().includes(str));
-			filter.forEach((d) => $(`#coffeeDisplay`).append(`<div class="anime col p-1 fs-3">${d.name} <span class="little fs-5 fst-italic p-1">${d.roast}</span></div>`));
+			filter.forEach((d) => $(`#coffeeDisplay`).append(`<div class="anime col p-1 fs-3">${d.name} <span class="d-md-inline d-none little fs-5 fst-italic p-1">${d.roast}</span></div>`));
 		}
 	}
 	function getData() {                                             /*send and rewrite code for local storage*/
