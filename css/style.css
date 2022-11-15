@@ -27,3 +27,7 @@ body {
     background-color: tan;
     border-radius: .25em;
 }
+
+.little{
+    --bs-text-opacity: .5;
+}

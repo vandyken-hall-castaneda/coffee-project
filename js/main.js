@@ -21,7 +21,7 @@
 		{id: 14, name: 'French', roast: 'dark'},
 	];
 	getData();
-	let globalCoffee = coffees.map((d) => d.name);
+	let globalCoffee = coffees;
 	let count = coffees[coffees.length - 1].id + 1;
 	coffeePrint();
 	function sort(num) {                                     /*takes filter selection and only prints valid information*/
@@ -35,17 +35,17 @@
 		} else {
 			filter = coffees;
 		}
-		globalCoffee = filter.map((d) => d.name);
+		globalCoffee = filter;
 		coffeePrint();
 	}
 	function coffeePrint(str) {
 		$(`#coffeeDisplay`).empty();                               /*loop to print objects into container*/
 		if (str === `` || str === undefined) {
-			globalCoffee.forEach((d) => $(`#coffeeDisplay`).append(`<div class="anime col p-1 fs-3">${d}</div>`));
+			globalCoffee.forEach((d) => $(`#coffeeDisplay`).append(`<div class="anime col p-1 fs-3">${d.name} <span class="little fs-5 fst-italic p-1">${d.roast}</span></div>`));
 		} else {
 			str = str.toLowerCase();
-			let filter = globalCoffee.filter((d) => d.toLowerCase().includes(str));
-			filter.forEach((d) => $(`#coffeeDisplay`).append(`<div class="anime col p-1 fs-3">${d}</div>`));
+			let filter = globalCoffee.filter((d) => d.name.toLowerCase().includes(str));
+			filter.forEach((d) => $(`#coffeeDisplay`).append(`<div class="anime col p-1 fs-3">${d.name} <span class="little fs-5 fst-italic p-1">${d.roast}</span></div>`));
 		}
 	}
 	function getData() {                                             /*send and rewrite code for local storage*/
