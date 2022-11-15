@@ -7,7 +7,6 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
 	      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
 </head>
 
 <body>
@@ -35,28 +34,42 @@
 				</div>
 			</div>
 			<div class="row border-top mb-3">
-				<form class="mt-4">
-					<div class="mb-3">
-						<label for="name" class="form-label">Coffee Name</label>
-						<input type="text" class="form-control" id="name" placeholder="Type your coffee here!">
+				<div class="row m-0 mt-3 p-3">
+					<div class="col align-self-center text-center">
+						<button class="btn btn-primary fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+							Dont see what you like?
+						</button>
 					</div>
-					<div class="mb-3">
-						<select class="form-select" aria-label="Default select example" id="optionsRoast">
-							<option selected>Roast</option>
-							<option value="1">Light</option>
-							<option value="2">Medium</option>
-							<option value="3">Dark</option>
-						</select>
-					</div>
-					<button type="button" class="btn btn-primary" id="save">Send to our local list!</button>
-				</form>
+
+				</div>
+
+				<div class="collapse" id="collapseExample">
+					<form class="mt-4">
+						<div class="mb-3">
+							<label for="name" class="form-label">Coffee Name</label>
+							<input type="text" class="form-control" id="name" placeholder="Type your coffee here!">
+						</div>
+						<div class="mb-3">
+							<select class="form-select" aria-label="Default select example" id="optionsRoast">
+								<option selected>Roast</option>
+								<option value="1">Light</option>
+								<option value="2">Medium</option>
+								<option value="3">Dark</option>
+							</select>
+						</div>
+						<button type="button" class="btn btn-primary" id="save">Send to our local list!</button>
+					</form>
+				</div>
+
 			</div>
 		</div>
 	</div>
 </div>
 
-
-<script src="js/main.js"></script>
+<!-- MDB -->
+<script
+		type="text/javascript"
+></script><script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
