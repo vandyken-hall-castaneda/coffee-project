@@ -7,19 +7,22 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
 	      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="corm">
 <script src="js/jquery.js"></script>
 <h1 class="text-center mb-4 mt-5">Coffee</h1>
 <div class="container">
 	<div class="row">
 		<div class="col">
-			<div class="row row-cols-2 border" id="coffeeDisplay">
+			<div class="row row-cols-2 " id="coffeeDisplay">
 
 			</div>
 		</div>
-		<div class="col border">
+		<div class="col ">
 			<div class="row m-2">
 				<div class="row">
 					<select class="form-select " aria-label="Default select example" id="options">
@@ -33,10 +36,10 @@
 					<input type="text" placeholder="Search coffees" id="search">
 				</div>
 			</div>
-			<div class="row border-top mb-3">
+			<div class="row -top mb-3">
 				<div class="row m-0 mt-3 p-3">
 					<div class="col align-self-center text-center">
-						<button class="btn btn-primary fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+						<button class="btn fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 							Dont see what you like?
 						</button>
 					</div>
@@ -57,7 +60,7 @@
 								<option value="3">Dark</option>
 							</select>
 						</div>
-						<button type="button" class="btn btn-primary" id="save">Send to our local list!</button>
+						<button type="button" class="btn" id="save">Send to our local list!</button>
 					</form>
 				</div>
 
