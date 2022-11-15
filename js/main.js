@@ -41,11 +41,11 @@
 	function coffeePrint(str) {
 		$(`#coffeeDisplay`).empty();                               /*loop to print objects into container*/
 		if (str === `` || str === undefined) {
-			globalCoffee.forEach((d) => $(`#coffeeDisplay`).append(`<div class="col p-1 fs-3">${d}</div>`));
+			globalCoffee.forEach((d) => $(`#coffeeDisplay`).append(`<div class="anime col p-1 fs-3">${d}</div>`));
 		} else {
 			str = str.toLowerCase();
 			let filter = globalCoffee.filter((d) => d.toLowerCase().includes(str));
-			filter.forEach((d) => $(`#coffeeDisplay`).append(`<div class="col p-1 fs-3">${d}</div>`));
+			filter.forEach((d) => $(`#coffeeDisplay`).append(`<div class="anime col p-1 fs-3">${d}</div>`));
 		}
 	}
 	function getData() {                                             /*send and rewrite code for local storage*/
